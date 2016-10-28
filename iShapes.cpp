@@ -25,6 +25,25 @@ ostream& roundingOff(ostream& out){
   return out;
 }
 
+void checkShape(vector<string>& lineWords, vector<const Shape*>& shapesBag, vector<string>& shapesTypeBag){
+  string validShapes[] = {"SQUARE", "RECTANGLE", "CIRCLE", "TRIANGLE", "CUBE", "BOX", "CYLINDER", "PRISM"};
+  bool valShape = false;
+  for(auto& i : validShapes){
+    if(lineWords.at(0) == i){
+      valShape = true;
+    }
+  }
+  cout.flush();
+  if(valShape == true){
+    calcShape(lineWords, shapesBag, shapesTypeBag);
+  }
+  else{
+    if(lineWords.at(0)!="EOF"){
+      cout << lineWords.at(0) << " invalid shape" << endl;
+    }
+  }
+}
+
 void calcShape(vector<string>& lineWords, vector<const Shape*>& shapesBag, vector<string>& shapesTypeBag){
   string shapeType = lineWords.at(0);
 
@@ -70,26 +89,6 @@ void calcShape(vector<string>& lineWords, vector<const Shape*>& shapesBag, vecto
   }
   else {
     //end of file, do nothing
-  }
-}
-
-void checkShape(vector<string>& lineWords, vector<const Shape*>& shapesBag, vector<string>& shapesTypeBag){
-  string validShapes[] = {"SQUARE", "RECTANGLE", "CIRCLE", "TRIANGLE", "CUBE", "BOX", "CYLINDER", "PRISM"};
-  bool valShape = false;
-
-  for(auto& i : validShapes){
-    if(lineWords.at(0) == i){
-      valShape = true;
-    }
-  }
-
-  if(valShape == true){
-    calcShape(lineWords, shapesBag, shapesTypeBag);
-  }
-  else{
-    if(lineWords.at(0)!="EOF"){
-      cout << lineWords.at(0) << " invalid shape" << endl;
-    }
   }
 }
 

@@ -20,7 +20,7 @@ int main(){
 
   ifstream fin;
   fin.open("Shapes.input.txt");
-  vector<const void*> shapesBag;
+  vector<const Shape*> shapesBag;
   vector<string> shapesTypeBag;
 
   while (fin.good()){
@@ -31,10 +31,9 @@ int main(){
       checkShape(lineElems, shapesBag, shapesTypeBag);
     }
   }
-
   fin.close();
-
-  for (int i = 0; i < shapesBag.size(); i++){
+  
+  for (unsigned int i = 0; i < shapesBag.size(); i++){
     if (shapesTypeBag[i] == "SQUARE"){
       const Square* const ps = reinterpret_cast<const Square*>(shapesBag[i]);
       const Square& rs = *ps;
@@ -83,7 +82,7 @@ int main(){
   ofstream fout;
   fout.open("Shapes.output.txt");
 
-  for (int i = 0; i < shapesBag.size(); i++){
+  for (unsigned int i = 0; i < shapesBag.size(); i++){
     if (shapesTypeBag[i] == "SQUARE"){
       const Square* const ps = reinterpret_cast<const Square*>(shapesBag[i]);
       const Square& rs = *ps;
@@ -131,7 +130,7 @@ int main(){
 
   fout.close();
 
-  for (int i = 0; i < shapesBag.size(); i++){
+  for (unsigned int i = 0; i < shapesBag.size(); i++){
     if (shapesTypeBag[i] == "SQUARE"){
       const Square* const ps = reinterpret_cast<const Square*>(shapesBag[i]);
       delete ps;
